@@ -36,5 +36,5 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  align-self: center; /* <-- this centers the button in the flex column */
+  align-self: center; 
 }

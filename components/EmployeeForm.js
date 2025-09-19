@@ -1,69 +1,73 @@
-import React from 'react';
-import './EmployeeForm.css';
+import React, { useState } from "react";
+import "./EmployeeForm.css";
 
-class EmployeeForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { name: '', email: '', title: '', department: '' };
-  }
+function EmployeeForm({ onAddEmployee }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [department, setDepartment] = useState("");
 
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !jobTitle.trim() || !department.trim()) return;
+
+    const newEmployee = {
+      id: Date.now(),
+      name: name.trim(),
+      email: email.trim(),
+      jobTitle: jobTitle.trim(),
+      department: department.trim(),
+    };
+
+    onAddEmployee(newEmployee);
+
+    setName("");
+    setEmail("");
+    setJobTitle("");
+    setDepartment("");
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(this.state);
-    this.setState({ name: '', email: '', title: '', department: '' });
-  };
+  return (
+    <form className="employee-form" onSubmit={handleSubmit}>
+      <div className="form-row">
+        <label>Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
 
-  render() {
-    return (
-      <form className="employee-form" onSubmit={this.handleSubmit}>
-        <div className="form-row">
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </div>
+      <div className="form-row">
+        <label>Email:</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
 
-        <div className="form-row">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-        </div>
+      <div className="form-row">
+        <label>Job Title:</label>
+        <input
+          type="text"
+          value={jobTitle}
+          onChange={(e) => setJobTitle(e.target.value)}
+        />
+      </div>
 
-        <div className="form-row">
-          <label>Job Title:</label>
-          <input
-            type="text"
-            name="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-          />
-        </div>
+      <div className="form-row">
+        <label>Department:</label>
+        <input
+          type="text"
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
+        />
+      </div>
 
-        <div className="form-row">
-          <label>Department:</label>
-          <input
-            type="text"
-            name="department"
-            value={this.state.department}
-            onChange={this.handleChange}
-          />
-        </div>
-
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
+      <button type="submit">Add Employee</button>
+    </form>
+  );
 }
 
 export default EmployeeForm;
