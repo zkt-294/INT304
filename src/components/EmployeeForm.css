@@ -1,0 +1,40 @@
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-row label {
+  width: 100px; /* fixed width for labels */
+}
+
+.form-row input {
+  flex: 1; /* take remaining space */
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+
+.employee-form button {
+  padding: 10px 20px;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: center; 
+}
